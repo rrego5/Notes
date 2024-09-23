@@ -1,0 +1,6 @@
+Search Engine,URL,Query
+PubMed,https://pubmed.ncbi.nlm.nih.gov/,(binaural beats) AND (perception OR neurophysiology) AND (EEG OR brainwaves OR connectivity)
+ScienceDirect,https://www.sciencedirect.com/,"""binaural beats"" AND perception AND neurophysiology"
+Google Scholar,https://scholar.google.com/,"""binaural beats"" AND ""neurophysiology"" AND (perception OR EEG OR connectivity)"
+PsycINFO,https://www.apa.org/pubs/databases/psycinfo,"""binaural beats"" AND neurophysiology AND perception"
+Scopus,https://www.scopus.com/,(binaural beats AND neurophysiology) OR (binaural beats AND EEG)

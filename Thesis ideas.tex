@@ -1,0 +1,414 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{parskip}
+\usepackage{natbib}
+
+
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\title{Notes on Auditory Perception and Neural Processing}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Acronyms}
+
+\begin{tabbing}
+    \textbf{Acronym} \hspace{3cm} \= \textbf{Stands for} \\
+    ANN \> Artificial Neural Network \\
+    ASSR \> Auditory Steady-State Response \\
+    BWE \> Brain Wave Entrainment \\
+    EEG \> Electroencephalogram \\
+    FFR \> Frequency Following Response \\
+    HRTF \> Head-related Transfer Function \\
+    HT \> Hilbert Transform \\
+    ITD \> Interaural Time Differences \\
+    KAN \> Kolmogorov-Arnold Networks \\
+    LSTM \> Long-Short Term Memory \\
+    MFCC \> Mel Frequency Cepstral Coefficient \\
+    MPL \> Multi-Layer Perceptrons \\
+    MSO \> Medial Superior Olive \\
+    PLV \> Phase Locking Value \\
+    RNN \> Recurrent Neural Network \\
+    SSD \> Singular Spectrum Decomposition \\
+    TE \> Transfer Entropy \\
+    TWCO \> Theory of Weakly Coupled Oscillators \\
+\end{tabbing}
+
+\newpage
+
+\section{Neural Basis}
+Outside of the cochlea, dendrites of the spiral ganglion cells synapse with the base of the hair cells located in the organ of Corti on the basilar membrane. 
+
+\begin{wrapfigure}{r}{0.5\textwidth}  % 'r' for right, and set the width of the figure
+\centering
+\includegraphics[width=0.5\textwidth]{pathways.png}  % Adjust the width
+\caption{Anatomy of the auditory pathway.}
+\label{fig:auditory-pathway}
+\end{wrapfigure}
+
+Triggered by the movement of the hair cells on the basilar membrane, the spiral ganglion cells are the first neurons to fire an action potential in the auditory pathway, transmitting all the brain's auditory input via their axons synapsing with the dendrites of the cochlear nuclei. The majority of the fibers (70 percent) cross over to the opposite hemisphere starting at the levels of the cochlear nuclei (contralateral pathway), while some remain on the same incoming side (ipsilateral pathway). The acoustic information is highly preprocessed by a series of brainstem nuclei before reaching the cortex. Basic acoustic features such as sound intensity, signal onsets, periodicity, and signal location are extracted in the cochlear nucleus, lateral lemniscus, and the superior olivary complex. There is a secondary pathway that originates in the ventral cochlear nucleus where some fibers project from there to the reticular formation, a general arousal system in the lower brainstem. Descending (efferent) fiber tracts from the reticular formation form the audio-spinal pathway by connecting with the motor neurons in the spinal cord to innervate reflexive motor responses to sound and to prime motor neural excitability. The secondary ascending (afferent) pathway inhibits lower auditory centers to elevate hearing thresholds and alert the cortex to incoming auditory signals.
+In the primary ascending pathway, the superior olivary complex is the first relay station of the brainstem where cochlear inputs from both left and right sides converge, providing the anatomical basis for the processing of sound location by measuring timing and sound intensity differences between incoming left and right signals to determine sound angles\citep{grothe2000,tollin2003} . More complex spectral and temporal decoding of the acoustic signals occurs in the inferior colliculus. Functional magnetic resonance imaging research with animals has shown that the spectral and temporal dimensions of the acoustic signals are distinctly mapped in the inferior colliculus, indicating that, in addition to the tonotopic maps, the temporal envelope of the acoustic signals are also topographically represented in the inferior colliculus \citep{baumann2011,baumann2015,mei2013}. The last cross-lateral projections are at the inferior colliculus level.
+The last subcortical node in the primary ascending pathway is the medial geniculate body, which is comprised of multiple subdivisions. The ventral nucleus of the medial geniculate body is tonotopically organized and is the main ascending route to the primary auditory cortex, while its other subdivisions project widely to both primary and non-primary auditory cortex. Importantly, the auditory pathway does not only consist of ascending projections; it also has rich top-down projections that are critical for modulation of neural responses in the subcortical auditory centers and for learning-induced plasticity \citep{bajo2010,suga2003}. \textbf{In general, conduction in the auditory pathway is faster and stronger for the contralateral pathway}.
+
+
+\subsection{Cochlea and Spiral Ganglion Cells}
+    \textbf{Cochlea:} A spiral-shaped organ in the inner ear where sound vibrations are converted into neural signals. \\
+    \textbf{Hair Cells:} Located in the organ of Corti on the basilar membrane, they move in response to sound vibrations. \\
+    \textbf{Spiral Ganglion Cells:} The dendrites of these cells synapse with the base of the hair cells. Movement of the hair cells triggers these ganglion cells to fire action potentials, marking the first neural response in the auditory pathway.
+    
+\subsection{Pathway to the Brainstem}
+    \textbf{Cochlear Nuclei:} The axons of the spiral ganglion cells transmit auditory information to the cochlear nuclei in the brainstem. Here fibers can follow either a contralateral or ipsilateral pathway: \\
+    \textbf{Contralateral Pathway:} The majority (70\%) of fibers cross to the opposite hemisphere. \\
+    \textbf{Ipsilateral Pathway:} Some fibers remain on the same side.
+    
+\subsection{Brainstem Processing}
+\textbf{Cochlear Nucleus, Lateral Lemniscus, and Superior Olivary Complex:} These brainstem nuclei preprocess acoustic features such as sound intensity, signal onsets, periodicity, and signal location. \\
+\textbf{Superior Olivary Complex:} The first relay station where inputs from both ears converge, processing sound location by measuring timing and intensity differences between the ears.
+
+\subsection{Secondary Pathway and Reflexes}
+\textbf{Ventral Cochlear Nucleus:} Some fibers project to the reticular formation, part of a general arousal system in the lower brainstem. \\
+\textbf{Audio-Spinal Pathway:} Efferent fibers from the reticular formation connect with motor neurons in the spinal cord, enabling reflexive motor responses to sound.
+
+\subsection{Advanced Processing in the Midbrain}
+\textbf{Inferior Colliculus:} Involved in complex spectral and temporal decoding of sounds. Functional MRI studies show distinct mappings of spectral and temporal dimensions in addition to tonotopic maps.
+
+\subsection{Thalamic Relay}
+\textbf{Medial Geniculate Body:} The final subcortical relay station. The ventral nucleus is tonotopically organized and routes information to the primary auditory cortex. Other subdivisions project to both primary and non-primary auditory cortices.
+\subsection{Auditory Cortex and Top-Down Modulation}
+\textbf{Primary Auditory Cortex:} Receives the main input from the medial geniculate body. \\
+\textbf{Top-Down Projections:} Rich descending pathways modulate neural responses in subcortical auditory centers and contribute to learning-induced plasticity.
+
+\subsubsection{Key Points}
+\begin{itemize}
+    \item \textbf{Contralateral Dominance:} Conduction is faster and stronger for the contralateral pathway.
+    \item \textbf{Topographic Representation:} Both spectral and temporal aspects of sounds are topographically mapped in the inferior colliculus.
+\end{itemize}
+
+\subsection{Interaural time differences}
+
+A basic concept in neuroscience is to correlate specific functions with specific neuronal structures. By discussing a specific example, an alternative concept is proposed: structures may be linked to rules of processing and these rules may serve different functions in different species or at different stages of evolution. The medial superior olive (MSO), a mammalian auditory brainstem structure, has been thought to solely process interaural time differences (ITD), the main cue for localizing low frequency sounds. Recent findings, however, indicate that this is not its only function since mammals that do not hear low frequencies and do not use ITDs for sound localization also possess an MSO.
+
+
+\section{Ohm’s Acoustic Law}
+Ohm's acoustic law states that the human ear perceives complex sounds in terms of their constituent sinusoidal (pure tone) components. Essentially, the ear performs a kind of Fourier analysis, breaking down complex auditory signals into simpler sinusoidal waves, each with its own frequency, amplitude, and phase.
+
+\subsection{Key Aspects of Ohm's Acoustic Law}
+
+\subsubsection{Frequency Resolution:}
+According to Ohm's law of acoustics, the ear can resolve and identify the different frequencies present in a complex sound. This is akin to recognizing the individual notes in a chord played on a piano.
+
+\subsubsection{Harmonic Analysis:}
+The auditory system analyzes harmonic sounds by detecting the individual harmonics or overtones that make up the sound. This allows the brain to perceive the pitch and timbre of complex sounds, even if the fundamental frequency is not physically present (as in the case of the \textit{missing fundamental}).
+
+\subsubsection{Spectral Components:}
+The perception of sound is largely determined by the spectral components (the individual frequencies) rather than the phase relationships between them. This means that the ear is more sensitive to the frequency content of a sound than to the specific timing (phase) of the waveforms.
+
+
+\section{Seebeck's Periodicity Theory}
+
+\textit{Seebeck} proposed that the perception of pitch is based on the periodicity (repetition rate) of a sound wave rather than its harmonic content. This contrasts with the spectral theories of pitch perception, which emphasize the importance of individual frequency components.
+
+According to \textit{Seebeck}, the auditory system detects the temporal pattern of the sound wave. The periodic repetition of the waveform, regardless of its harmonic structure, determines the perceived pitch.
+
+\textit{Seebeck} conducted experiments with complex tones and found that listeners could perceive a fundamental pitch even when the fundamental frequency was absent, as long as the periodicity of the waveform suggested that pitch. This phenomenon is related to the concept of the \textbf{Missing fundamental}.
+
+\textit{Seebeck}'s work influenced later theories of pitch perception, including the temporal theory of pitch perception, which emphasizes the role of timing and \textbf{phase-locking} in auditory neurons.
+
+Contemporary models recognize that both the temporal pattern (periodicity) and the harmonic content (spectral information) contribute to pitch perception. This integrated approach is supported by findings in auditory neuroscience and psychoacoustics.
+
+\section{Missing fundamental}
+
+When a sound consists of a series of harmonics (integer multiples of a base frequency) without the actual base frequency (fundamental) being present, the brain perceives the pitch corresponding to that base frequency.
+
+\textbf{Example:} If a sound contains harmonics at 300 Hz, 400 Hz, and 500 Hz, the fundamental frequency would be 100 Hz (the greatest common divisor of the harmonic frequencies). Even though 100 Hz is not physically present in the sound, listeners perceive the pitch as if it were.
+
+
+\section{Auditory Steady-State, Frequency-Following Responses}
+    
+\subsection{Auditory Steady-State Responses (ASSR)}
+ASSRs are a type of neural response to auditory stimuli characterized by the brain's ability to synchronize its electrical activity with the rhythm of the stimulus. When binaural beats are presented, the brain's electrical activity can lock onto the beat frequency, demonstrating an ASSR. This synchronization occurs at the cortical level and reflects the brain's capacity to follow the repetitive auditory stimulus, which in the case of binaural beats, is the frequency difference between the two tones presented to each ear.
+
+\subsection{Frequency-Following Responses (FFR)}
+FFRs are neural responses that occur at the subcortical level, specifically in the brainstem. These responses indicate the brainstem's ability to follow the frequency changes in the auditory stimuli. For binaural beats, the FFRs demonstrate that the brainstem can track the frequency difference between the two tones, which is perceived as the binaural beat. This response is crucial for understanding how binaural beats are processed early in the auditory pathway before the information is relayed to higher cortical areas.
+
+\subsection{Key Points from the Paper Orozco Perez et al. (2020)}
+\begin{itemize}
+    \item \textbf{Entrainment at Different Levels:} Both ASSRs and FFRs are elicited by binaural beats, indicating that these beats can entrain brain activity at both cortical and subcortical levels. ASSRs represent cortical entrainment, while FFRs represent subcortical (brainstem) entrainment.
+    \item \textbf{Functional Connectivity:} The study also explores changes in functional connectivity patterns in the brain induced by binaural beats. Functional connectivity refers to the temporal correlation between spatially remote neurophysiological events. The findings suggest that binaural beats can alter connectivity patterns, potentially influencing cognitive and emotional states \citep{orozco2020}.
+    \item \textbf{Subjective Effects:} The paper examines subjective reports of mood changes in response to binaural beats, linking these subjective experiences with objective neural measures (ASSRs and FFRs). For example, theta beats (around 7 Hz) are associated with relaxation, while gamma beats (around 40 Hz) are linked to heightened alertness and attention.
+\end{itemize}
+
+\section{Generating Brain Waves}
+
+Synchronization of neuronal activity in the brain underlies the emergence of neuronal oscillations termed \textbf{brain waves}, which serve various physiological functions and correlate with different behavioral states. It has been postulated that at least ten distinct mechanisms are involved in the formulation of these brain waves, including variations in the concentration of extracellular neurotransmitters and ions, as well as changes in cellular excitability. In this mini review, we highlight the contribution of astrocytes, a subtype of glia, in the formation and modulation of brain waves, mainly due to their close association with synapses that allows their bidirectional interaction with neurons, and their syncytium-like activity via gap junctions that facilitate communication to distal brain regions through Ca2+ waves. These capabilities allow astrocytes to regulate neuronal excitability via glutamate uptake, gliotransmission, and tight control of the extracellular K+ levels via a process termed K+ clearance. Spatio-temporal synchrony of activity across neuronal and astrocytic networks, both locally and distributed across cortical regions, underpins brain states and thereby behavioral states, and it is becoming apparent that astrocytes play an important role in the development and maintenance of neural activity underlying these complex behavioral states \citep{Buskila2019}.
+
+Neuronal oscillations show a linear progression on a natural logarithmic scale with little overlap \citep{Penttonen2003}, leading to the suggestion that at least ten distinct and independent mechanisms are required to cover the large frequency range of brain waves, and it has been reported that several oscillations are driven by multiple mechanisms \citep{Buzsaki2009,BuzsakiDraguhn2004}. Some of the suggested mechanisms underlying the generation of network oscillations are summarized in Table 1, and most of them include reciprocal interactions between excitatory and inhibitory mechanisms or changes in cellular excitability.
+
+
+\subsection{Key Functions of Astrocytes}
+\begin{itemize}
+    \item \textbf{Regulation of Neuronal Excitability:} Astrocytes regulate neuronal excitability via glutamate uptake and tight control of extracellular K\(^+\) levels through a process known as K\(^+\) clearance.
+    \item \textbf{Synaptic Plasticity:} Astrocytes also contribute to learning and memory by modulating synaptic plasticity through their interaction with neurons.
+\end{itemize}
+
+\section{Binaural Auditory Stimuli}
+Binaural auditory stimuli involve presenting two slightly different frequencies to each ear, which the brain processes as a single tone. This process results in a perception known as binaural beats, which have been shown to influence brain wave activity and induce states of relaxation or focus.
+
+According to \citep{klimesch2013}, brain and body signals oscillate in synchrony, aligning with each other to form a "single frequency architecture." This interaction can be described using the equation:
+\[
+fd(i) = s \times 2^i
+\]
+where $s$ is the scaling factor, $i$ refers to the biosignal of interest, and $f$ is the fundamental frequency of the biosignal oscillation. When $i = 0$, $f_d$ refers to cardiac activity. When $i < 0$, $f_d$ refers to breathing rhythms (including Mayer waves that are the lowest frequency in the respiratory process), blood pressure waves, rhythmic fluctuations in the blood oxygen level-dependent (BOLD) signal at intrinsic mode fluctuations, and gastric waves. 
+
+When $i > 0$, $f_d$ refers to brain oscillations [delta ($i = 1$), theta ($i = 2$), alpha ($i = 3$), beta ($i = 4$), gamma ($i = 5$)].
+
+In addition, upper and lower frequencies of each fundamental frequency can be, respectively, estimated by:
+
+\[
+uf_b(i) = \frac{1.25 \cdot 2^{i+1}}{g}
+\]
+
+\[
+lf_b(i) = (1.25 \cdot 2^{i-1}) \cdot g
+\]
+\section{Phase Oscillator Models}
+
+These models, based on the Theory of Weakly Coupled Oscillators (TWCO), are effective for simulating phase synchronization dynamics. 
+
+Phase-oscillator models have been used to simulate synchronization in neural networks, showing that they can replicate the phase-locking behaviors observed in real neural data \citep{lowet2016}.
+
+Synchronization, or phase-locking, between oscillating neuronal groups is considered to be important for the coordination of information among cortical networks. \textbf{Spectral coherence} is a commonly used approach to quantify phase-locking between neural signals. We systematically explored the validity of spectral coherence measures for quantifying synchronization among neural oscillators. To that aim, we simulated coupled oscillatory signals that exhibited synchronization dynamics using an abstract phase-oscillator model, as well as interacting gamma-generating spiking neural networks. 
+
+We found that, within a large parameter range, the spectral coherence measure deviated substantially from the expected phase-locking. Moreover, spectral coherence did not converge to the expected value with increasing signal-to-noise ratio. We found that spectral coherence particularly failed when oscillators were in the partially (intermittent) synchronized state, which we expect to be the most likely state for neural synchronization. This failure was due to the fast frequency and amplitude changes induced by synchronization forces.
+
+We then investigated whether spectral coherence reflected the information flow among networks, measured by \textbf{transfer entropy (TE)} of spike trains. We found that spectral coherence failed to robustly reflect changes in synchrony-mediated information flow between neural networks in many instances. As an alternative approach, we explored a \textbf{phase-locking value (PLV)} method based on the reconstruction of the instantaneous phase. One approach for reconstructing instantaneous phase is the \textbf{Hilbert Transform (HT)} preceded by \textbf{Singular Spectrum Decomposition (SSD)} of the signal
+
+PLV estimates have broad applicability as they do not rely on stationarity and, unlike spectral coherence, they enable more accurate estimations of oscillatory synchronization across a wide range of different synchronization regimes and better tracking of synchronization-mediated information flow among networks \citep{lowet2016}.
+
+PLV is preferred over traditional spectral coherence for neural synchronization because it better handles non-stationary dynamics and provides a clearer measure of phase consistency \citep{Schmidt2014}.
+
+\section{Rhythmic Entrainment in Music}
+
+\subsection{Repetitive Rhythmic Music, EEG and Subjective Experience}
+
+Jilek\footnote{Jilek, W. G. (1974). Salish Indian mental health and culture change: Psychohygienic and therapeutic aspects of the guardian spirit ceremonial.} observed a predominance in drumming frequencies at 4 to 7 beats per second, a range that correlates with the theta wave frequency band (4--7Hz) of the human EEG. He hypothesized that stimulation in this frequency range would be the most effective aid to entering an altered state of consciousness, given the correlations between increased theta wave activity and hypnagogic imagery, states of ecstasy, creativity, and sudden illuminations \citep{achterberg1985,green1977}.
+
+\subsection{Rhythmic Entrainment and Evolution}
+
+These theories include:
+
+\begin{itemize}
+    \item Rhythmic drumming acts as a focus for concentration and is used in combination with sensory deprivation, fasting, fatigue, mental imagery, etc., to achieve an altered state of consciousness.
+    \item Rhythmic drumming is simply part of the “set and setting” dictated by the beliefs and ritualized ceremonies of the culture, and the altered state of consciousness is a product of pathology, trickery, and/or hallucinations stemming from an overactive imagination and hypersuggestibility.
+    \item The rhythm of the drumming facilitates an altered state of consciousness.
+    \item The monotony of the drumming facilitates an altered state of consciousness.
+    \item The acoustic stimulation of rhythmic drumming acts as an auditory driving mechanism, affecting the electrical activity of the brain by bringing it into resonance (at a particular frequency or set of frequencies) with the external stimuli.
+\end{itemize}
+
+\section{Artificial Neural Networks}
+Artificial Neural Networks (ANNs) are computational models inspired by biological neural networks. They consist of layers of interconnected nodes (neurons) that process input data.
+
+\subsection{Kolmogorov-Arnold Networks (KAN)}
+Kolmogorov-Arnold Networks (KANs) are a type of ANN based on the Kolmogorov-Arnold representation theorem. They eliminate the need for linear weight matrices and use learnable activation functions on the edges.
+
+\subsubsection{Key Differences from Multi-Layer Perceptrons (MLPs)}
+\begin{itemize}
+    \item \textbf{No Linear Weights:} KANs do not require linear weights as MLPs do.
+    \item \textbf{Learnable Activation Functions on Edges:} Instead of fixed activation functions on nodes (like ReLU), KANs have learnable activation functions on the edges.
+    \item \textbf{Summation on Nodes:} Nodes in KANs simply sum the incoming signals without applying additional nonlinearities.
+\end{itemize}
+
+\subsection{KAN Architecture}
+
+\textbf{KAN Layer}: A KAN layer is defined as a matrix of 1D functions, where each function has trainable parameters. These functions act as the "weights" in the network.
+
+\textbf{Composition of Layers}: A KAN network is formed by composing multiple KAN layers. The output of one layer becomes the input to the next.
+
+\textbf{Spline Parameterization}: The learnable activation functions on the edges are typically parameterized using B-spline curves, allowing for flexibility and adaptability during training.
+
+\subsection{Advantages of KANs}
+
+\textbf{Accuracy}: KANs have shown the potential to be more accurate than MLPs, especially in tasks involving low-dimensional functions or compositional structures.
+
+\textbf{Interpretability}: The structure of KANs, with their learnable activation functions, makes them more interpretable than MLPs. The functions can be visualized, and their behavior can be analyzed to understand how the network is making decisions.
+
+\textbf{Neural Scaling Laws}: KANs exhibit faster neural scaling laws than MLPs, meaning that increasing the size of the network leads to more significant improvements in performance.
+
+\textbf{Scientific Discovery}: KANs have been used to rediscover mathematical relationships and physical laws, demonstrating their potential as tools for scientific research.
+
+\subsection{Training and Simplification}
+
+\textbf{Backpropagation}: KANs can be trained using standard backpropagation techniques, as all operations within the network are differentiable.
+
+\textbf{Sparsification and Pruning}: Techniques like L1 regularization and entropy regularization can be used to encourage sparsity in the network, making it smaller and more interpretable. Unimportant neurons can be pruned away after training.
+
+\textbf{Symbolization}: In some cases, the learned activation functions might resemble known mathematical functions (e.g., sine, cosine, exponential). KANs can be set to use these symbolic functions directly, further enhancing interpretability.
+
+% Title
+\section*{Kuramoto Model}
+
+The Kuramoto model is a mathematical model used to describe synchronization phenomena in systems of coupled oscillators. It was developed by Yoshiki Kuramoto in 1975 to understand how independent oscillators can spontaneously synchronize their rhythms through weak interactions \cite{thompson2003neurofeedback, oster1973auditory}.
+
+% Core Concept
+\subsection*{Core Concept}
+
+The Kuramoto model represents a system of $N$ oscillators, each with its own natural frequency, but influenced by other oscillators. Over time, these oscillators can synchronize depending on the strength of the coupling between them and the natural differences in their frequencies \cite{oster1973auditory}.
+
+% Mathematical Formulation
+\subsection*{Mathematical Formulation}
+
+Each oscillator in the model is represented by its phase $\theta_i(t)$, which evolves over time. The dynamics of the system are governed by the following differential equation:
+
+\[
+\frac{d\theta_i}{dt} = \omega_i + \frac{K}{N} \sum_{j=1}^{N} \sin(\theta_j - \theta_i)
+\]
+
+Where:
+- $\theta_i(t)$: The phase of the $i$-th oscillator at time $t$.
+- $\omega_i$: The natural frequency of the $i$-th oscillator.
+- $K$: The coupling constant, which determines the strength of the interaction between the oscillators.
+- $N$: The total number of oscillators in the system.
+- $\sum_{j=1}^{N} \sin(\theta_j - \theta_i)$: The sum of the phase differences between oscillator $i$ and all other oscillators $j$.
+
+% Parameters Explained
+\subsection*{Parameters Explained}
+\begin{itemize}
+    \item \textbf{Natural Frequency} ($\omega_i$): Each oscillator has its own frequency $\omega_i$, which dictates how it would behave in isolation.
+    \item \textbf{Coupling Constant} ($K$): This parameter controls how strongly the oscillators interact with each other. A higher $K$ means the oscillators are more likely to synchronize \cite{draganova2008cortical, gao2014analysis}.
+    \item \textbf{Phase} ($\theta_i$): Represents the position of each oscillator within its oscillatory cycle (e.g., for a clock, the phase might correspond to the hand's position).
+\end{itemize}
+
+% Synchronization
+\subsection*{Synchronization}
+When $K$ is low, the oscillators behave independently, each following its natural frequency. As $K$ increases, the oscillators start to synchronize, gradually aligning their phases. If $K$ is sufficiently large, complete synchronization may occur, meaning all oscillators oscillate in unison \cite{kennel2010binaural}.
+
+% Order Parameter
+\subsection*{Order Parameter}
+
+To measure the degree of synchronization in the system, an order parameter $r$ is defined:
+
+\[
+r(t) e^{i\psi(t)} = \frac{1}{N} \sum_{j=1}^{N} e^{i\theta_j(t)}
+\]
+
+Where:
+- $r(t)$: Measures the coherence of the system. If $r = 0$, the oscillators are completely unsynchronized. If $r = 1$, the oscillators are fully synchronized \cite{gao2014analysis}.
+- $\psi(t)$: The average phase of the oscillators.
+
+% Applications
+\subsection*{Applications}
+
+The Kuramoto model has been widely used in various fields to model synchronization phenomena, such as:
+\begin{itemize}
+    \item \textbf{Neural synchronization}: Understanding how neurons or brain regions synchronize their activity \cite{chaieb2015auditory}.
+    \item \textbf{Biological rhythms}: Describing the synchronization of circadian rhythms, heartbeats, or flashing fireflies \cite{draganova2008cortical, jirakittayakorn2017brain}.
+    \item \textbf{Power grids}: Modeling how power generators synchronize in large networks.
+\end{itemize}
+
+% Extensions of the Kuramoto Model
+\subsection*{Extensions of the Kuramoto Model}
+\begin{itemize}
+    \item \textbf{External Forcing}: In some cases, an external periodic force is introduced, representing an external stimulus (e.g., binaural beats in brain entrainment) \cite{kennel2010binaural, jirakittayakorn2017brain}.
+    \item \textbf{Non-uniform coupling}: The coupling between oscillators may vary, reflecting the fact that in real systems, not all components interact equally \cite{thompson2003neurofeedback}.
+    \item \textbf{Stochastic Models}: Random noise can be added to account for unpredictable fluctuations in the system \cite{gao2014analysis}.
+\end{itemize}
+
+% Key Insights
+\subsection*{Key Insights}
+\begin{itemize}
+    \item The Kuramoto model shows that synchronization can emerge even when oscillators have different natural frequencies, as long as the coupling between them is strong enough \cite{draganova2008cortical, chaieb2015auditory}.
+    \item The model is simple but powerful, making it a common framework for studying synchronization in complex systems \cite{kennel2010binaural}.
+\end{itemize}
+
+\section{Types of Artificial Neural Networks (ANNs) and Their Applications for Modeling Brain Perception}
+
+\subsection{Feedforward Neural Networks (FNNs)}
+
+\textbf{Overview:} Feedforward Neural Networks (FNNs) are the simplest form of artificial neural networks, where information moves in one direction—from input to output—without any feedback loops. 
+
+\textbf{Application for Binaural Beat Perception:} FNNs are primarily used for tasks involving pattern recognition. However, they are not suitable for modeling time-dependent processes like brain synchronization, as they lack the ability to capture sequential dynamics.
+
+\textbf{Suitability:} Due to their lack of temporal processing, FNNs are not ideal for this project, which involves modeling how the brain entrains to binaural beats over time.
+
+\subsection{Recurrent Neural Networks (RNNs)}
+
+\textbf{Overview:} Recurrent Neural Networks (RNNs) include loops that allow them to process sequences of data by maintaining a "memory" of previous inputs. This makes them capable of handling time-dependent information.
+
+\textbf{Application for Binaural Beat Perception:} RNNs can model the time-varying nature of the brain’s response to binaural beats. However, due to the vanishing gradient problem, RNNs can struggle to capture long-term dependencies.
+
+\textbf{Suitability:} RNNs are an improvement over FNNs for sequential data, but for your specific purpose, LSTMs may perform better for modeling long-term brainwave synchronization.
+
+\section{Long Short-Term Memory (LSTM)}
+
+\textbf{Overview:} Long Short-Term Memory (LSTM) networks are a special type of RNN designed to capture long-term dependencies by incorporating a memory cell that can preserve information over extended sequences \cite{hochreiter1997long}.
+
+\textbf{Application for Binaural Beat Perception:} LSTMs are well-suited to model the time-dependent nature of brain synchronization with binaural beats, making them an ideal candidate for capturing the dynamics of neural entrainment.
+
+\textbf{Suitability:} Highly suitable for this project, especially for tracking how the brain synchronizes with binaural beats over time.
+
+\subsection{Kolmogorov-Arnold Networks (KANs)}
+
+\textbf{Overview:} Kolmogorov-Arnold Networks (KANs) differ from traditional neural networks in that they use learnable activation functions on the edges rather than fixed weights and activations on nodes. This allows for more flexible and interpretable models.
+
+\textbf{Application for Binaural Beat Perception:} KANs can model complex, non-linear processes like neural synchronization with binaural beats. They provide greater interpretability compared to LSTMs, making them useful for understanding the underlying mechanisms of brain entrainment.
+
+\textbf{Suitability:} KANs are useful for explaining how neural synchronization occurs, though they may not be as efficient as LSTMs for time-series modeling.
+
+\subsection{Convolutional Neural Networks (CNNs)}
+
+\textbf{Overview:} Convolutional Neural Networks (CNNs) are typically used for image processing, relying on spatial hierarchies within the data. They are less effective for sequential or time-sensitive data like brainwave patterns.
+
+\textbf{Application for Binaural Beat Perception:} While CNNs are powerful for recognizing spatial patterns, they are not suitable for modeling time-series data like brain synchronization to binaural beats \cite{lecun1998gradient}.
+
+\textbf{Suitability:} Not recommended for this project unless spatial data (e.g., EEG patterns) become a focus.
+
+\subsection{Generative Adversarial Networks (GANs)}
+
+\textbf{Overview:} Generative Adversarial Networks (GANs) consist of two networks: a generator and a discriminator. They are commonly used for data generation and simulation \cite{goodfellow2014generative}.
+
+\textbf{Application for Binaural Beat Perception:} GANs could be used to simulate binaural beat stimuli or brainwave patterns but are not the best choice for modeling brain synchronization directly.
+
+\textbf{Suitability:} GANs could be a secondary tool for generating auditory data but are not suitable as the primary model for brain entrainment.
+
+\subsection{Hybrid Models: Combining Kuramoto Model and ANN}
+
+\textbf{Overview:} A hybrid approach that combines the Kuramoto model for phase synchronization and a neural network, such as LSTM or KAN, could allow for modeling both the \textbf{temporal} and \textbf{mechanistic} aspects of brain entrainment to binaural beats.
+
+\textbf{Application for Binaural Beat Perception:} This hybrid approach allows for the simulation of \textbf{phase coupling} between neurons while tracking the \textbf{temporal evolution} of neural synchronization. The Kuramoto model simulates how neurons synchronize, while LSTM or KAN models can handle the temporal and non-linear aspects of the data \cite{kuramoto1975self}.
+
+\textbf{Suitability:} Highly suitable for capturing both the time-varying and mechanistic details of how the brain responds to binaural beats.
+
+\subsection{Recommendation}
+
+Based on your project requirements, the best architecture is likely a hybrid model:
+\begin{itemize}
+    \item Use an \textbf{LSTM} or \textbf{GRU} to capture the \textbf{temporal dynamics} of brain synchronization to binaural beats.
+    \item Incorporate a \textbf{Kuramoto-inspired Phase Coupling Layer} to model neural phase synchronization.
+    \item Optionally, add a \textbf{KAN} layer to provide deeper insights into the \textbf{mechanisms} behind synchronization.
+\end{itemize}
+
+This architecture will allow for both \textbf{temporal accuracy} and \textbf{interpretability}.
+
+\newpage
+
+\bibliographystyle{apalike}
+\bibliography{references} 
+
+
+\end{document}
