@@ -33,19 +33,9 @@
 *.bkp
 *~
 
-# Common binary files
-*.exe
-*.dll
-*.so
-*.dylib
-*.obj
-*.o
-*.pyc
-*.class
-
 # Ignore system files
 .DS_Store
 Thumbs.db
 
-# Include PDF files explicitly (override if needed)
-!*.pdf
+# I don't want Excel files either
+*.xlsx
