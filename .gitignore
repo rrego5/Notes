@@ -1,8 +1,51 @@
-/.vscode
-/Thesis ideas.aux
-/Thesis ideas.fdb_latexmk
-/Thesis ideas.fls
-/Thesis ideas.log
-/Thesis ideas.out
-/Thesis ideas.synctex.gz
-/Thesis ideas.toc
+# LaTeX intermediate and auxiliary files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.snm
+*.nav
+*.vrb
+*.bcf
+*.run.xml
+
+# LaTeX backup files
+*.bak
+*.sav
+*.bkp
+*~
+
+# Common binary files
+*.exe
+*.dll
+*.so
+*.dylib
+*.obj
+*.o
+*.pyc
+*.class
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Include PDF files explicitly (override if needed)
+!*.pdf
